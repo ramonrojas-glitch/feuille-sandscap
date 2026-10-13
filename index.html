@@ -362,6 +362,56 @@ body.locked{overflow:hidden}
   .choice-row{grid-template-columns:minmax(0,1fr)}
   .steps li{font-size:10px;letter-spacing:.12em}
 }
+
+/* ---------- mobile-first fixes (phones ~390px are the primary target) ---------- */
+@supports (height:100svh){:root{--sh:min(calc(100svh - var(--head)),860px)}}
+section[id]{scroll-margin-top:var(--head)}
+.mnav{position:fixed;left:0;right:0;top:calc(var(--head) + env(safe-area-inset-top,0px));z-index:39;background:var(--linen);border-bottom:1px solid var(--line);box-shadow:0 18px 40px rgba(31,23,17,.14);padding:8px 16px 20px;animation:reveal .35s cubic-bezier(.2,.7,.2,1) both}
+.mnav a{display:flex;align-items:center;justify-content:space-between;min-height:56px;border-bottom:1px solid var(--line);font-family:var(--display);font-style:italic;font-size:26px;text-decoration:none}
+.mnav a:last-child{border-bottom:0}
+.mnav a span{font:500 12px var(--sans);font-style:normal;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.menu .ic-x{display:none}
+.menu[aria-expanded="true"] .ic-x{display:block}
+.menu[aria-expanded="true"] .ic-bars{display:none}
+@media (min-width:1024px){.mnav{display:none!important}}
+@media (max-width:1023px){
+  .logo{min-height:44px;justify-content:center}
+  .logo-sub{font-size:10px;letter-spacing:.32em}
+  .pin-label{font-size:11px}
+  .co-tag{font-size:11px}
+  .cue{font-size:12px}
+  .prod-badge{font-size:11px}
+  .prod-cat{font-size:12px;letter-spacing:.18em}
+  .foot-links a{display:inline-flex;align-items:center;min-height:44px}
+  .foot-links{gap:4px 24px}
+  .foot-row{gap:12px}
+  .li-right .stepper{height:44px}
+  .li-right .stepper button{width:44px;height:42px;font-size:18px}
+  .line-item{grid-template-columns:64px minmax(0,1fr) auto;gap:12px}
+  .line-item img{width:64px;height:80px}
+  .link-btn{min-height:44px;padding:0;font-size:13px}
+  .modal-card{max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px)}
+  .qv-meta dt{font-size:12px;letter-spacing:.16em}
+  .field label,.sub-l{font-size:12px;letter-spacing:.16em}
+  .steps li{font-size:11px;letter-spacing:.1em;padding-right:6px}
+  .toast{left:16px;right:16px;transform:none;max-width:none;justify-content:space-between}
+  .toast button{min-height:44px;flex:none}
+  .qv-buy .stepper button{width:44px}
+  .prod-name button{display:inline-block;padding-block:11px;margin-block:-11px}
+  .add-btn{font-size:12px}
+  .co-num{font-size:12px}
+}
+@media (max-width:600px){
+  /* hero: bigger, edge-to-edge video (its edges are already feathered by the mask) and vertically balanced */
+  .sticky{padding-top:max(20px,calc((var(--sh) - 640px) / 2))}
+  .frame{width:min(100vw,calc((var(--sh) - 400px) * 1.778));max-width:none;flex:none}
+  .caps{height:auto;min-height:150px}
+  .cap-item{position:relative;inset:auto}
+  .co-body{font-size:15px}
+  .co-actions .btn:last-child{flex:1}
+  .stats{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)}
+  .stat-l{font-size:11px;letter-spacing:.14em}
+}
 @media (max-width:480px){
   .add-btn{width:100%}
   .prod-foot .stepper{width:100%;justify-content:space-between}
@@ -377,8 +427,9 @@ body.locked{overflow:hidden}
     <a href="#proceso">L'Atelier</a>
     <a href="#visitanos">Visítanos</a>
   </nav>
-  <button class="menu" type="button" aria-label="Abrir menú">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 8h18M3 16h18"></path></svg>
+  <button class="menu" type="button" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mnav">
+    <svg class="ic-bars" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 8h18M3 16h18"></path></svg>
+    <svg class="ic-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
   </button>
   <a class="logo" href="#inicio" aria-label="Maison Feuille, inicio">
     <span class="logo-word">Maison Feuille</span>
@@ -392,6 +443,11 @@ body.locked{overflow:hidden}
     </button>
   </div>
 </header>
+<nav class="mnav" id="mnav" aria-label="Menú" hidden>
+  <a href="#tienda">Boutique <span>Ordenar</span></a>
+  <a href="#proceso">L'Atelier <span>El proceso</span></a>
+  <a href="#visitanos">Visítanos <span>Horario</span></a>
+</nav>
 
 <main>
   <section id="inicio" class="hero" aria-label="Cómo se hace nuestro croissant">
@@ -877,10 +933,18 @@ body.locked{overflow:hidden}
   }
   function renderAll(){ renderTabs(); renderGrid(); renderCart(); if (!$('checkout').hidden) renderSummary(); }
 
+  // mobile menu
+  var menuBtn = $('menu-btn'), mnav = $('mnav');
+  function setMenu(on, refocusBtn){ mnav.hidden = !on; menuBtn.setAttribute('aria-expanded', on); menuBtn.setAttribute('aria-label', on ? 'Cerrar menú' : 'Abrir menú'); if (on) mnav.querySelector('a').focus(); else if (refocusBtn) menuBtn.focus(); }
+  menuBtn.addEventListener('click', function(){ setMenu(mnav.hidden); });
+  mnav.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('click', function(e){ if (!mnav.hidden && !e.target.closest('#mnav') && !e.target.closest('#menu-btn')) setMenu(false); });
+  window.addEventListener('resize', function(){ if (!mnav.hidden && window.innerWidth >= 1024) setMenu(false); });
+
   // overlays
   var lastFocus = null;
   function lock(on){ document.body.classList.toggle('locked', on); }
-  function openDrawer(){ lastFocus = document.activeElement; closeQV(true); $('scrim').hidden = false; $('drawer').hidden = false; lock(true); $('drawer').querySelector('[data-close]').focus(); }
+  function openDrawer(){ $('toast').hidden = true; setMenu(false); lastFocus = document.activeElement; closeQV(true); $('scrim').hidden = false; $('drawer').hidden = false; lock(true); $('drawer').querySelector('[data-close]').focus(); }
   function closeDrawer(){ $('drawer').hidden = true; if ($('qv').hidden) { $('scrim').hidden = true; lock(false); } if (lastFocus) lastFocus.focus(); }
   var qvId = null, qvQty = 1;
   function openQV(id){
@@ -888,7 +952,7 @@ body.locked{overflow:hidden}
     $('qv-img').src = p.img; $('qv-img').alt = p.plain; $('qv-cat').textContent = CAT_LABEL[p.cat] + ' · ' + p.sub;
     $('qv-title').innerHTML = p.name; $('qv-desc').textContent = p.desc; $('qv-ing').textContent = p.ing; $('qv-all').textContent = p.all; $('qv-keep').textContent = p.keep;
     $('qv-price').textContent = fmt(p.price); $('qv-qty').textContent = 1;
-    $('scrim').hidden = false; $('qv').hidden = false; lock(true); $('qv-add').focus();
+    $('toast').hidden = true; setMenu(false); $('scrim').hidden = false; $('qv').hidden = false; lock(true); $('qv-add').focus();
   }
   function closeQV(silent){ if ($('qv').hidden) return; $('qv').hidden = true; if ($('drawer').hidden) { $('scrim').hidden = true; lock(false); } if (!silent && lastFocus) lastFocus.focus(); }
   var toastTimer = 0;
@@ -999,7 +1063,7 @@ body.locked{overflow:hidden}
     if (el.id === 'co-logo') { closeCheckout(); return; }
   });
   function refocus(sel, old){ var b = document.querySelector((old.closest('#drawer') ? '#drawer ' : '#grid ') + sel); if (b) { b.focus(); return true; } return false; }
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { if (!$('qv').hidden) closeQV(); else if (!$('drawer').hidden) closeDrawer(); else if (!$('checkout').hidden && step < 4) closeCheckout(); } });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { if (!mnav.hidden) setMenu(false, true); else if (!$('qv').hidden) closeQV(); else if (!$('drawer').hidden) closeDrawer(); else if (!$('checkout').hidden && step < 4) closeCheckout(); } });
   $('step-1').addEventListener('submit', function(e){ e.preventDefault(); if (validate1()) showStep(2); });
   $('step-2').addEventListener('submit', function(e){ e.preventDefault(); if (validate2()) showStep(3); });
   $('step-3').addEventListener('submit', function(e){ e.preventDefault(); place(); });
@@ -1008,6 +1072,8 @@ body.locked{overflow:hidden}
   document.getElementById('news').addEventListener('submit', function(e){ e.preventDefault(); document.getElementById('news-ok').hidden = false; });
 })();
 </script>
+
+</body></html>
 
 </body>
 </html>
