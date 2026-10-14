@@ -423,6 +423,15 @@ section[id]{scroll-margin-top:var(--head)}
 .cart-note{position:absolute;top:calc(100% + 8px);right:40px;max-width:min(300px,calc(100vw - 32px));padding:9px 16px;background:var(--ink);color:var(--cream);font:500 13px/1.25 var(--sans);letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 12px 26px -14px rgba(31,23,17,.5);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s;pointer-events:none}
 .cart-note.show{opacity:1;visibility:visible;transform:none;transition:opacity .2s ease,transform .2s ease}
 @media (prefers-reduced-motion:reduce){.head,.cart-note,.cart-note.show{transition:none}.cart-note{transform:none}}
+
+/* Aviso de confianza: Brinco no guarda tarjetas (las protege AZUL, CardNet o MIO) */
+.fvault{display:flex;align-items:flex-start;gap:8px;max-width:560px;margin:0;font-size:13px;line-height:1.55;text-align:left;text-wrap:pretty;letter-spacing:normal;text-transform:none}
+.fvault svg,.vault-line svg{flex:none;margin-top:2px}
+.vault-line{display:flex;align-items:flex-start;justify-content:center;gap:7px;margin:0;font-size:12.5px;line-height:1.45;text-align:left;text-wrap:pretty;letter-spacing:normal;text-transform:none}
+.vault-line svg{margin-top:1px}
+.fvault b,.vault-line b{font-weight:600}
+.foot .fvault{margin-top:20px;color:var(--on-dark-muted)}.foot .fvault svg{color:var(--gold)}.foot .fvault b{color:var(--on-dark)}
+.vault-line{margin-top:12px;color:var(--muted)}.vault-line svg{color:var(--accent)}.vault-line b{color:var(--ink)}
 </style>
 <link rel="icon" type="image/png" sizes="64x64" href="media/favicon.png">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
@@ -655,6 +664,7 @@ section[id]{scroll-margin-top:var(--head)}
         <a href="https://instagram.com">Instagram</a>
       </div>
     </div>
+    <p class="fvault"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11"/></svg><span>Brinco no guarda tarjetas. Tus datos de pago quedan protegidos por el procesador certificado PCI DSS: <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.</span></p>
   </div>
 </footer>
 
@@ -952,7 +962,7 @@ section[id]{scroll-margin-top:var(--head)}
       '<div class="sum-row"><span>Subtotal</span><span>' + fmt(t.sub) + '</span></div>' +
       '<div class="sum-row"><span>ITBIS (18%)</span><span>' + fmt(t.tax) + '</span></div>' +
       '<div class="sum-row total"><span>Total</span><span>' + fmt(t.sub + t.tax) + '</span></div>' +
-      '<button type="button" class="btn btn-block" id="go-checkout">Finalizar pedido</button>';
+      '<button type="button" class="btn btn-block" id="go-checkout">Finalizar pedido</button>' + VAULT_LINE;
   }
   function renderAll(){ renderTabs(); renderGrid(); renderCart(); if (!$('checkout').hidden) renderSummary(); }
 
@@ -1022,13 +1032,14 @@ section[id]{scroll-margin-top:var(--head)}
       '<div class="sum-row"><span>' + (order.mode === 'delivery' ? 'Entrega a domicilio' : 'Recogida en el atelier') + '</span><span>' + (t.ship ? fmt(t.ship) : 'Gratis') + '</span></div>' +
       '<div class="sum-row total"><span>Total</span><span>' + fmt(t.total) + '</span></div>';
   }
+  var VAULT_LINE = '<p class="vault-line"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z\"/><rect x=\"9\" y=\"11\" width=\"6\" height=\"5\" rx=\"1\"/><path d=\"M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11\"/></svg><span>Brinco no guarda tu tarjeta. La protegen <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.</span></p>';
   function renderPayNote(){
     var t = totals(), notes = {
       card: 'Al confirmar, se abrirá la pasarela de pago segura del banco (Azul o CardNET) para cobrar <strong>' + fmt(t.total) + '</strong>. Esta maqueta no cobra ni pide datos de tarjeta.',
       transfer: 'Te enviaremos por WhatsApp y correo los datos de la cuenta. Preparamos el pedido en cuanto confirmemos la transferencia de <strong>' + fmt(t.total) + '</strong>.',
       cash: 'Pagas <strong>' + fmt(t.total) + '</strong> ' + (order.mode === 'delivery' ? 'al recibir el pedido' : 'al recogerlo en el atelier') + ', en efectivo o con tarjeta.'
     };
-    $('pay-note').innerHTML = notes[order.pay];
+    $('pay-note').innerHTML = notes[order.pay] + (order.pay === 'card' ? VAULT_LINE : '');
     Array.prototype.forEach.call(document.querySelectorAll('[data-pay]'), function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-pay') === order.pay); });
   }
   function check(id, ok){ var f = $(id).closest('.field'); f.classList.toggle('bad', !ok); f.querySelector('.err').hidden = ok; return ok; }
