@@ -416,6 +416,13 @@ section[id]{scroll-margin-top:var(--head)}
   .add-btn{width:100%}
   .prod-foot .stepper{width:100%;justify-content:space-between}
 }
+
+/* Barra fija: siempre visible, sombra al bajar y aviso de "agregado" junto al botón del pedido */
+.head{transition:box-shadow .2s ease}
+.head.scrolled{box-shadow:0 10px 24px -16px rgba(31,23,17,.35)}
+.cart-note{position:absolute;top:calc(100% + 8px);right:40px;max-width:min(300px,calc(100vw - 32px));padding:9px 16px;background:var(--ink);color:var(--cream);font:500 13px/1.25 var(--sans);letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 12px 26px -14px rgba(31,23,17,.5);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s;pointer-events:none}
+.cart-note.show{opacity:1;visibility:visible;transform:none;transition:opacity .2s ease,transform .2s ease}
+@media (prefers-reduced-motion:reduce){.head,.cart-note,.cart-note.show{transition:none}.cart-note{transform:none}}
 </style>
 <link rel="icon" type="image/png" sizes="64x64" href="media/favicon.png">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
@@ -880,7 +887,21 @@ section[id]{scroll-margin-top:var(--head)}
     setQty(id, (cart[id] || 0) + (q || 1));
     var c = $('cart-count'); c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump');
     toast((q > 1 ? q + ' × ' : '') + byId[id].plain + ' añadido al pedido');
+    avisoAgregado(byId[id].plain);
   }
+
+  // aviso junto al botón del pedido (la barra de arriba queda fija al bajar)
+  var headBar = document.querySelector('.head'), cartNote = document.createElement('div'), cartNoteT = 0;
+  cartNote.className = 'cart-note'; cartNote.setAttribute('aria-hidden', 'true'); headBar.appendChild(cartNote);
+  function avisoAgregado(nombre){
+    var h = headBar.getBoundingClientRect(), b = $('cart-btn').getBoundingClientRect();
+    cartNote.style.right = Math.max(8, Math.round(h.right - b.right)) + 'px';
+    cartNote.textContent = '✓ ' + nombre + ' en tu pedido';
+    cartNote.classList.add('show');
+    clearTimeout(cartNoteT); cartNoteT = setTimeout(function(){ cartNote.classList.remove('show'); }, 2200);
+  }
+  function marcarBarra(){ headBar.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', marcarBarra, {passive:true}); marcarBarra();
 
   // catalog
   var activeCat = 'all';
