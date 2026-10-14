@@ -253,6 +253,10 @@ h1,h2,h3{text-wrap:balance}
 .price-note{margin-top:28px;font-size:12px;color:var(--muted);letter-spacing:.04em}
 
 /* overlays */
+.ship-bar{font-size:13px;color:var(--muted)}
+.ship-track{height:3px;background:rgba(43,33,25,.12);margin-top:8px}
+.ship-fill{height:100%;background:var(--accent);width:0;transition:width .4s}
+@media (prefers-reduced-motion:reduce){.ship-fill{transition:none}}
 .scrim{position:fixed;inset:0;background:rgba(31,23,17,.55);z-index:80}
 .drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--paper);z-index:90;display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(31,23,17,.2);animation:slideIn .35s cubic-bezier(.2,.7,.2,1)}
 @keyframes slideIn{from{transform:translateX(100%)}to{transform:none}}
@@ -524,7 +528,7 @@ section[id]{scroll-margin-top:var(--head)}
       </div>
       <div class="tabs" role="group" aria-label="Filtrar por categoría" id="tabs"></div>
       <div class="grid" id="grid" aria-live="polite"></div>
-      <p class="price-note">Precios de ejemplo en RD$, ITBIS incluido. Se ajustan con el menú real del cliente.</p>
+      <p class="price-note">Precios de ejemplo en RD$, antes de ITBIS. Se ajustan con el menú real del cliente.</p>
     </div>
   </section>
 
@@ -769,6 +773,7 @@ section[id]{scroll-margin-top:var(--head)}
   function save(){ try { localStorage.setItem('mf-cart', JSON.stringify(cart)); } catch(e) {} }
 
   function count(){ var n = 0; for (var k in cart) n += cart[k]; return n; }
+  var ITBIS = 0.18, SHIP = 250, FREE_SHIP = 2500;
   function subtotal(){ var sub = 0; for (var k in cart) sub += byId[k].price * cart[k]; return sub; }
   function setQty(id, q){
     if (q <= 0) delete cart[id]; else cart[id] = Math.min(q, 24);
@@ -836,9 +841,14 @@ section[id]{scroll-margin-top:var(--head)}
         '<div><div class="li-name">' + p.name + '</div><div class="li-unit">' + fmt(p.price) + ' c/u</div><button type="button" class="link-btn" data-remove="' + id + '">Quitar</button></div>' +
         '<div class="li-right">' + stepperHTML(id, q) + '<span class="li-total">' + fmt(p.price * q) + '</span></div></div>';
     }).join('');
+    var sub = subtotal(), tax = sub * ITBIS, left = FREE_SHIP - sub;
     $('cart-foot').innerHTML =
-      '<div class="sum-row total" style="border-top:0;padding-top:0"><span>Subtotal</span><span>' + fmt(subtotal()) + '</span></div>' +
-      '<div class="li-unit">Entrega a domicilio RD$250. Recoger en el atelier es gratis.</div>' +
+      '<div class="ship-bar">' + (left > 0 ? 'Te faltan <strong>' + fmt(left) + '</strong> para entrega gratis a domicilio.' : '¡Tu pedido tiene <strong>entrega gratis</strong> a domicilio!') +
+        '<div class="ship-track"><div class="ship-fill" style="width:' + Math.min(100, sub / FREE_SHIP * 100) + '%"></div></div></div>' +
+      '<div class="sum-row"><span>Subtotal</span><span>' + fmt(sub) + '</span></div>' +
+      '<div class="sum-row"><span>ITBIS (18%)</span><span>' + fmt(tax) + '</span></div>' +
+      '<div class="sum-row total"><span>Total</span><span>' + fmt(sub + tax) + '</span></div>' +
+      '<div class="li-unit">' + (left > 0 ? 'Entrega a domicilio RD$250 (más ITBIS). ' : '') + 'Recoger en el atelier es gratis.</div>' +
       '<button type="button" class="btn btn-block" id="go-checkout">Finalizar pedido</button>' +
       '<p class="vault-line" data-brinco="vault-footer"></p>';
   }

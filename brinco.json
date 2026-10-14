@@ -15,15 +15,51 @@
   "prefijoOrden": "MF",
   "moneda": "RD$",
   "envio": 250,
-  "entrega": { "delivery": true, "pickup": true, "deliveryMin": 40, "deliveryMax": 55, "pickupMin": 15 },
-  "sectores": ["Piantini", "Naco", "Serrallés", "Bella Vista", "Evaristo Morales", "Gazcue", "Arroyo Hondo", "Los Cacicazgos", "La Esperilla", "Mirador Sur", "Paraíso", "Zona Colonial"],
-  "tienda": { "direccion": "C/ Rafael Augusto Sánchez 34, Piantini", "ciudad": "Santo Domingo", "mapa": "https://maps.google.com/?q=Rafael+Augusto+S%C3%A1nchez+34,+Piantini,+Santo+Domingo" },
-  "producto": { "singular": "pieza", "plural": "piezas" },
+  "envioGratisDesde": 2500,
+  "itbis": {
+    "incluido": false,
+    "tasa": 0.18
+  },
+  "entrega": {
+    "delivery": true,
+    "pickup": true,
+    "deliveryMin": 40,
+    "deliveryMax": 55,
+    "pickupMin": 15
+  },
+  "sectores": [
+    "Piantini",
+    "Naco",
+    "Serrallés",
+    "Bella Vista",
+    "Evaristo Morales",
+    "Gazcue",
+    "Arroyo Hondo",
+    "Los Cacicazgos",
+    "La Esperilla",
+    "Mirador Sur",
+    "Paraíso",
+    "Zona Colonial"
+  ],
+  "tienda": {
+    "direccion": "C/ Rafael Augusto Sánchez 34, Piantini",
+    "ciudad": "Santo Domingo",
+    "mapa": "https://maps.google.com/?q=Rafael+Augusto+S%C3%A1nchez+34,+Piantini,+Santo+Domingo"
+  },
+  "producto": {
+    "singular": "pieza",
+    "plural": "piezas"
+  },
   "etapas": {
     "preparando": "Armando tu caja",
     "coccion": "Recién horneado",
     "coccionTexto": "Sale del horno del atelier y va directo a la caja, con la corteza todavía crujiente."
   },
-  "contacto": { "direccion": "[Dirección del atelier]", "telefono": "[Teléfono / WhatsApp]", "correo": "[Correo]", "instagram": "[@maisonfeuille]" },
+  "contacto": {
+    "direccion": "[Dirección del atelier]",
+    "telefono": "[Teléfono / WhatsApp]",
+    "correo": "[Correo]",
+    "instagram": "[@maisonfeuille]"
+  },
   "idioma": "es"
 }
