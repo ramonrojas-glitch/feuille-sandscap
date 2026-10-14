@@ -274,9 +274,6 @@ h1,h2,h3{text-wrap:balance}
 .empty{padding:48px 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
 .empty p{margin:0;font-family:var(--display);font-size:22px;font-style:italic}
 .drawer-foot{padding:20px 24px calc(24px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);display:flex;flex-direction:column;gap:14px;background:var(--paper)}
-.ship-bar{font-size:13px;color:var(--muted)}
-.ship-track{height:3px;background:rgba(43,33,25,.12);margin-top:8px}
-.ship-fill{height:100%;background:var(--accent);width:0;transition:width .4s}
 .sum-row{display:flex;justify-content:space-between;font-size:14px;font-variant-numeric:tabular-nums}
 .sum-row.total{font-family:var(--display);font-size:22px;padding-top:10px;border-top:1px solid var(--line)}
 .btn-block{width:100%}
@@ -298,52 +295,6 @@ h1,h2,h3{text-wrap:balance}
 .qv-buy{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:auto;padding-top:8px}
 .qv-buy .add-btn{flex:1;min-width:180px}
 
-/* checkout */
-.checkout{position:fixed;inset:0;z-index:95;background:var(--cream);overflow-y:auto;animation:rise .35s cubic-bezier(.2,.7,.2,1)}
-.co-top{position:sticky;top:0;z-index:2;background:var(--linen);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:0 40px;height:72px;padding-top:env(safe-area-inset-top,0px)}
-.co-wrap{max-width:1180px;margin:0 auto;padding:48px 40px 96px;display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start}
-.co-main{flex:999 1 560px;min-width:0}
-.co-side{flex:1 1 340px;min-width:0;background:var(--paper);border:1px solid var(--line);padding:28px;position:sticky;top:104px}
-.co-side h3{margin:0 0 12px;font-family:var(--display);font-weight:400;font-style:italic;font-size:24px}
-.steps{display:flex;gap:0;margin:0 0 36px;padding:0;list-style:none;border-bottom:1px solid var(--line)}
-.steps li{flex:1;padding:0 0 14px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(43,33,25,.45);border-bottom:2px solid transparent;margin-bottom:-1px}
-.steps li.on{color:var(--ink);border-color:var(--ink);font-weight:500}
-.steps li.done{color:var(--accent)}
-.co-main h2{margin:0 0 24px;font-family:var(--display);font-weight:400;font-size:clamp(30px,3vw,42px)}
-.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
-.field{display:flex;flex-direction:column;gap:8px;min-width:0}
-.field.full{grid-column:1/-1}
-.field label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
-.field input,.field select,.field textarea{min-height:48px;border:1px solid rgba(43,33,25,.3);background:var(--paper);padding:10px 14px;font:400 16px var(--sans);color:var(--ink);border-radius:0;width:100%}
-.field textarea{min-height:84px;resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent)}
-.field .err{font-size:12.5px;color:#9B2C1C}
-.field.bad input,.field.bad select{border-color:#9B2C1C}
-.choice-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:28px}
-.choice{min-height:84px;padding:16px 18px;border:1px solid rgba(43,33,25,.25);background:transparent;text-align:left;cursor:pointer;font-family:inherit;color:var(--ink);display:flex;flex-direction:column;gap:6px}
-.choice:hover{border-color:var(--ink)}
-.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--cream)}
-.choice b{font-family:var(--display);font-weight:400;font-size:20px;font-style:italic}
-.choice span{font-size:13px;opacity:.8}
-.slot-grid{display:flex;flex-wrap:wrap;gap:8px}
-.slot{min-height:44px;padding:0 16px;border:1px solid rgba(43,33,25,.25);background:transparent;cursor:pointer;font:400 14px var(--sans);color:var(--ink);font-variant-numeric:tabular-nums}
-.slot:hover{border-color:var(--ink)}
-.slot[aria-pressed="true"]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
-.sub-l{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;margin:24px 0 12px}
-.pay-note{margin-top:16px;padding:18px;border:1px dashed rgba(43,33,25,.35);font-size:14px;line-height:1.55;color:var(--muted)}
-.co-actions{display:flex;justify-content:space-between;gap:12px;margin-top:36px;flex-wrap:wrap}
-.btn-ghost{background:transparent;color:var(--ink)}
-.btn-ghost:hover{background:var(--ink);color:var(--cream)}
-.mini-line{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:6px 0;font-variant-numeric:tabular-nums}
-.mini-line span:first-child{min-width:0}
-.co-side .sum-row{margin-top:8px}
-.done-card{max-width:640px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;padding:40px 0}
-.done-card .h2{font-size:clamp(36px,4vw,56px)}
-.order-no{font-family:var(--display);font-size:22px;letter-spacing:.06em}
-.done-box{width:100%;text-align:left;border:1px solid var(--line);background:var(--paper);padding:24px;margin-top:8px}
-
-.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:99;background:var(--ink);color:var(--cream);padding:14px 20px;font-size:14px;display:flex;gap:16px;align-items:center;box-shadow:0 10px 30px rgba(31,23,17,.25);animation:rise .3s cubic-bezier(.2,.7,.2,1);max-width:calc(100% - 32px)}
-.toast button{border:0;background:transparent;color:var(--gold);font:500 12px var(--sans);letter-spacing:.18em;text-transform:uppercase;cursor:pointer;min-height:36px}
 body.locked{overflow:hidden}
 
 @media (max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -355,12 +306,6 @@ body.locked{overflow:hidden}
   .modal-card{grid-template-columns:1fr}
   .qv-img{aspect-ratio:4/3}
   .qv-body{padding:24px 20px}
-  .co-top{padding:0 16px}
-  .co-wrap{padding:28px 16px 80px;gap:32px}
-  .co-side{position:relative;top:0}
-  .fields{grid-template-columns:minmax(0,1fr)}
-  .choice-row{grid-template-columns:minmax(0,1fr)}
-  .steps li{font-size:10px;letter-spacing:.12em}
 }
 
 /* ---------- mobile-first fixes (phones ~390px are the primary target) ---------- */
@@ -392,10 +337,6 @@ section[id]{scroll-margin-top:var(--head)}
   .link-btn{min-height:44px;padding:0;font-size:13px}
   .modal-card{max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px)}
   .qv-meta dt{font-size:12px;letter-spacing:.16em}
-  .field label,.sub-l{font-size:12px;letter-spacing:.16em}
-  .steps li{font-size:11px;letter-spacing:.1em;padding-right:6px}
-  .toast{left:16px;right:16px;transform:none;max-width:none;justify-content:space-between}
-  .toast button{min-height:44px;flex:none}
   .qv-buy .stepper button{width:44px}
   .prod-name button{display:inline-block;padding-block:11px;margin-block:-11px}
   .add-btn{font-size:12px}
@@ -408,7 +349,6 @@ section[id]{scroll-margin-top:var(--head)}
   .caps{height:auto;min-height:150px}
   .cap-item{position:relative;inset:auto}
   .co-body{font-size:15px}
-  .co-actions .btn:last-child{flex:1}
   .stats{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)}
   .stat-l{font-size:11px;letter-spacing:.14em}
 }
@@ -424,6 +364,9 @@ section[id]{scroll-margin-top:var(--head)}
 .cart-note.show{opacity:1;visibility:visible;transform:none;transition:opacity .2s ease,transform .2s ease}
 @media (prefers-reduced-motion:reduce){.head,.cart-note,.cart-note.show{transition:none}.cart-note{transform:none}}
 
+/* Menú de escritorio con "Mis pedidos": cabe sin partir líneas entre 1024 y 1240px */
+@media (min-width:1024px) and (max-width:1239px){.nav{gap:18px}.nav a{letter-spacing:.1em;white-space:nowrap}}
+
 /* Aviso de confianza: Brinco no guarda tarjetas (las protege AZUL, CardNet o MIO) */
 .fvault{display:flex;align-items:flex-start;gap:8px;max-width:560px;margin:0;font-size:13px;line-height:1.55;text-align:left;text-wrap:pretty;letter-spacing:normal;text-transform:none}
 .fvault svg,.vault-line svg{flex:none;margin-top:2px}
@@ -435,6 +378,8 @@ section[id]{scroll-margin-top:var(--head)}
 </style>
 <link rel="icon" type="image/png" sizes="64x64" href="media/favicon.png">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<link rel="stylesheet" href="https://piezza.sandscap.com.do/brinco/v1/kit.css">
+<script src="https://piezza.sandscap.com.do/brinco/v1/kit.js" defer></script>
 </head>
 <body>
 
@@ -444,6 +389,7 @@ section[id]{scroll-margin-top:var(--head)}
     <a href="#tienda">Boutique</a>
     <a href="#proceso">L'Atelier</a>
     <a href="#visitanos">Visítanos</a>
+    <a href="/pedido/" data-brinco="mis-pedidos">Mis pedidos</a>
   </nav>
   <button class="menu" type="button" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mnav">
     <svg class="ic-bars" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 8h18M3 16h18"></path></svg>
@@ -465,6 +411,7 @@ section[id]{scroll-margin-top:var(--head)}
   <a href="#tienda">Boutique <span>Ordenar</span></a>
   <a href="#proceso">L'Atelier <span>El proceso</span></a>
   <a href="#visitanos">Visítanos <span>Horario</span></a>
+  <a href="/pedido/" data-brinco="mis-pedidos">Mis pedidos <span>Seguimiento</span></a>
 </nav>
 
 <main>
@@ -577,7 +524,7 @@ section[id]{scroll-margin-top:var(--head)}
       </div>
       <div class="tabs" role="group" aria-label="Filtrar por categoría" id="tabs"></div>
       <div class="grid" id="grid" aria-live="polite"></div>
-      <p class="price-note">Precios de ejemplo en RD$, antes de ITBIS. Se ajustan con el menú real del cliente.</p>
+      <p class="price-note">Precios de ejemplo en RD$, ITBIS incluido. Se ajustan con el menú real del cliente.</p>
     </div>
   </section>
 
@@ -662,9 +609,13 @@ section[id]{scroll-margin-top:var(--head)}
         <a href="#proceso">L'Atelier</a>
         <a href="#tienda">Ordenar</a>
         <a href="https://instagram.com">Instagram</a>
+        <a href="/pedido/">Mis pedidos</a>
+        <a href="/seguridad/">Seguridad</a>
+        <a href="/privacidad/">Privacidad</a>
+        <a href="/terminos/">Términos</a>
       </div>
     </div>
-    <p class="fvault"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11"/></svg><span>Brinco no guarda tarjetas. Tus datos de pago quedan protegidos por el procesador certificado PCI DSS: <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.</span></p>
+    <p class="fvault" data-brinco="vault-footer"></p>
   </div>
 </footer>
 
@@ -701,69 +652,6 @@ section[id]{scroll-margin-top:var(--head)}
     </div>
   </div>
 </div>
-
-<!-- checkout -->
-<div class="checkout" id="checkout" role="dialog" aria-modal="true" aria-label="Finalizar pedido" hidden>
-  <div class="co-top">
-    <a class="logo" href="#inicio" id="co-logo" aria-label="Volver a la tienda"><span class="logo-word">Maison Feuille</span><span class="logo-sub">Pago seguro</span></a>
-    <button class="link-btn" type="button" id="co-back-shop">Seguir comprando</button>
-  </div>
-  <div class="co-wrap" id="co-wrap">
-    <div class="co-main">
-      <ol class="steps" id="steps"><li>1 · Tus datos</li><li>2 · Entrega</li><li>3 · Pago</li></ol>
-
-      <form id="step-1" novalidate>
-        <h2>¿A nombre de quién?</h2>
-        <div class="fields">
-          <div class="field"><label for="f-name">Nombre y apellido</label><input id="f-name" autocomplete="name" required><span class="err" hidden>Escribe tu nombre.</span></div>
-          <div class="field"><label for="f-phone">Teléfono / WhatsApp</label><input id="f-phone" type="tel" autocomplete="tel" placeholder="809-000-0000" required><span class="err" hidden>Escribe un teléfono de 10 dígitos.</span></div>
-          <div class="field full"><label for="f-email">Correo electrónico</label><input id="f-email" type="email" autocomplete="email" required><span class="err" hidden>Escribe un correo válido para enviarte la confirmación.</span></div>
-          <div class="field full"><label for="f-note">Nota para el atelier (opcional)</label><textarea id="f-note" placeholder="Ej.: es para un regalo, ¿pueden poner una tarjeta?"></textarea></div>
-        </div>
-        <div class="co-actions"><span></span><button class="btn" type="submit">Continuar a la entrega</button></div>
-      </form>
-
-      <form id="step-2" novalidate hidden>
-        <h2>¿Cómo lo recibes?</h2>
-        <div class="choice-row" role="group" aria-label="Tipo de entrega">
-          <button type="button" class="choice" data-mode="pickup" aria-pressed="true"><b>Recoger en el atelier</b><span>Gratis · listo a la hora que elijas</span></button>
-          <button type="button" class="choice" data-mode="delivery" aria-pressed="false"><b>Entrega a domicilio</b><span id="ship-label">RD$250 · gratis desde RD$2,500</span></button>
-        </div>
-        <div id="addr-fields" class="fields" hidden>
-          <div class="field full"><label for="f-addr">Dirección</label><input id="f-addr" autocomplete="street-address" placeholder="Calle, número, edificio, apartamento"><span class="err" hidden>Escribe la dirección de entrega.</span></div>
-          <div class="field"><label for="f-sector">Sector</label><select id="f-sector"><option value="">Elige tu sector</option><option>Piantini</option><option>Naco</option><option>Serrallés</option><option>Bella Vista</option><option>Evaristo Morales</option><option>Gazcue</option><option>Arroyo Hondo</option><option>Los Cacicazgos</option><option>Otro sector</option></select><span class="err" hidden>Elige un sector.</span></div>
-          <div class="field"><label for="f-ref">Referencia</label><input id="f-ref" placeholder="Frente a…"></div>
-        </div>
-        <div class="sub-l">Día</div>
-        <div class="slot-grid" id="days" role="group" aria-label="Día"></div>
-        <div class="sub-l">Hora</div>
-        <div class="slot-grid" id="times" role="group" aria-label="Hora"></div>
-        <div class="co-actions"><button class="btn btn-ghost" type="button" data-back="1">Atrás</button><button class="btn" type="submit">Continuar al pago</button></div>
-      </form>
-
-      <form id="step-3" novalidate hidden>
-        <h2>¿Cómo prefieres pagar?</h2>
-        <div class="choice-row" role="group" aria-label="Método de pago" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
-          <button type="button" class="choice" data-pay="card" aria-pressed="true"><b>Tarjeta</b><span>Visa · Mastercard · Amex</span></button>
-          <button type="button" class="choice" data-pay="transfer" aria-pressed="false"><b>Transferencia</b><span>Confirmamos al recibirla</span></button>
-          <button type="button" class="choice" data-pay="cash" aria-pressed="false"><b id="cash-title">Pago al recoger</b><span>Efectivo o tarjeta</span></button>
-        </div>
-        <div class="pay-note" id="pay-note"></div>
-        <div class="co-actions"><button class="btn btn-ghost" type="button" data-back="2">Atrás</button><button class="btn" type="submit" id="place-btn">Confirmar pedido</button></div>
-      </form>
-
-      <div id="step-done" hidden></div>
-    </div>
-
-    <aside class="co-side" id="co-side" aria-label="Resumen del pedido">
-      <h3>Resumen</h3>
-      <div id="co-lines"></div>
-      <div id="co-sums"></div>
-    </aside>
-  </div>
-</div>
-
-<div class="toast" id="toast" role="status" hidden><span id="toast-msg"></span><button type="button" id="toast-open">Ver pedido</button></div>
 
 <script>
 (function(){
@@ -869,7 +757,6 @@ section[id]{scroll-margin-top:var(--head)}
   ];
   var CATS = [['all','Todo'],['viennoiserie','Viennoiserie'],['patisserie','Pâtisserie'],['pan','Pan'],['cajas','Cajas']];
   var CAT_LABEL = {viennoiserie:'Viennoiserie', patisserie:'Pâtisserie', pan:'Pan', cajas:'Cajas de regalo'};
-  var ITBIS = 0.18, SHIP = 250, FREE_SHIP = 2500;
   var byId = {}; PRODUCTS.forEach(function(p){ byId[p.id] = p; });
   var fmt = function(n){ return 'RD$' + Math.round(n).toLocaleString('en-US'); };
   var $ = function(id){ return document.getElementById(id); };
@@ -880,15 +767,9 @@ section[id]{scroll-margin-top:var(--head)}
   try { cart = JSON.parse(localStorage.getItem('mf-cart') || '{}') || {}; } catch(e) { cart = {}; }
   Object.keys(cart).forEach(function(k){ if (!byId[k] || !(cart[k] > 0)) delete cart[k]; });
   function save(){ try { localStorage.setItem('mf-cart', JSON.stringify(cart)); } catch(e) {} }
-  var order = { mode:'pickup', day:0, time:'8:30', pay:'card' };
 
   function count(){ var n = 0; for (var k in cart) n += cart[k]; return n; }
-  function totals(){
-    var sub = 0; for (var k in cart) sub += byId[k].price * cart[k];
-    var ship = order.mode === 'delivery' && sub < FREE_SHIP && sub > 0 ? SHIP : 0;
-    var tax = sub * ITBIS;
-    return { sub:sub, tax:tax, ship:ship, total:sub + tax + ship };
-  }
+  function subtotal(){ var sub = 0; for (var k in cart) sub += byId[k].price * cart[k]; return sub; }
   function setQty(id, q){
     if (q <= 0) delete cart[id]; else cart[id] = Math.min(q, 24);
     save(); renderAll();
@@ -896,8 +777,8 @@ section[id]{scroll-margin-top:var(--head)}
   function add(id, q){
     setQty(id, (cart[id] || 0) + (q || 1));
     var c = $('cart-count'); c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump');
-    toast((q > 1 ? q + ' × ' : '') + byId[id].plain + ' añadido al pedido');
     avisoAgregado(byId[id].plain);
+    if (window.Brinco && Brinco.track) Brinco.track('carrito', { producto: byId[id].plain, total: subtotal() });
   }
 
   // aviso junto al botón del pedido (la barra de arriba queda fija al bajar)
@@ -955,16 +836,13 @@ section[id]{scroll-margin-top:var(--head)}
         '<div><div class="li-name">' + p.name + '</div><div class="li-unit">' + fmt(p.price) + ' c/u</div><button type="button" class="link-btn" data-remove="' + id + '">Quitar</button></div>' +
         '<div class="li-right">' + stepperHTML(id, q) + '<span class="li-total">' + fmt(p.price * q) + '</span></div></div>';
     }).join('');
-    var t = totals(), left = FREE_SHIP - t.sub;
     $('cart-foot').innerHTML =
-      '<div class="ship-bar">' + (left > 0 ? 'Te faltan <strong>' + fmt(left) + '</strong> para entrega gratis a domicilio.' : '¡Tu pedido tiene <strong>entrega gratis</strong> a domicilio!') +
-        '<div class="ship-track"><div class="ship-fill" style="width:' + Math.min(100, t.sub / FREE_SHIP * 100) + '%"></div></div></div>' +
-      '<div class="sum-row"><span>Subtotal</span><span>' + fmt(t.sub) + '</span></div>' +
-      '<div class="sum-row"><span>ITBIS (18%)</span><span>' + fmt(t.tax) + '</span></div>' +
-      '<div class="sum-row total"><span>Total</span><span>' + fmt(t.sub + t.tax) + '</span></div>' +
-      '<button type="button" class="btn btn-block" id="go-checkout">Finalizar pedido</button>' + VAULT_LINE;
+      '<div class="sum-row total" style="border-top:0;padding-top:0"><span>Subtotal</span><span>' + fmt(subtotal()) + '</span></div>' +
+      '<div class="li-unit">Entrega a domicilio RD$250. Recoger en el atelier es gratis.</div>' +
+      '<button type="button" class="btn btn-block" id="go-checkout">Finalizar pedido</button>' +
+      '<p class="vault-line" data-brinco="vault-footer"></p>';
   }
-  function renderAll(){ renderTabs(); renderGrid(); renderCart(); if (!$('checkout').hidden) renderSummary(); }
+  function renderAll(){ renderTabs(); renderGrid(); renderCart(); }
 
   // mobile menu
   var menuBtn = $('menu-btn'), mnav = $('mnav');
@@ -977,7 +855,7 @@ section[id]{scroll-margin-top:var(--head)}
   // overlays
   var lastFocus = null;
   function lock(on){ document.body.classList.toggle('locked', on); }
-  function openDrawer(){ $('toast').hidden = true; setMenu(false); lastFocus = document.activeElement; closeQV(true); $('scrim').hidden = false; $('drawer').hidden = false; lock(true); $('drawer').querySelector('[data-close]').focus(); }
+  function openDrawer(){ setMenu(false); lastFocus = document.activeElement; closeQV(true); $('scrim').hidden = false; $('drawer').hidden = false; lock(true); $('drawer').querySelector('[data-close]').focus(); }
   function closeDrawer(){ $('drawer').hidden = true; if ($('qv').hidden) { $('scrim').hidden = true; lock(false); } if (lastFocus) lastFocus.focus(); }
   var qvId = null, qvQty = 1;
   function openQV(id){
@@ -985,90 +863,21 @@ section[id]{scroll-margin-top:var(--head)}
     $('qv-img').src = p.img; $('qv-img').alt = p.plain; $('qv-cat').textContent = CAT_LABEL[p.cat] + ' · ' + p.sub;
     $('qv-title').innerHTML = p.name; $('qv-desc').textContent = p.desc; $('qv-ing').textContent = p.ing; $('qv-all').textContent = p.all; $('qv-keep').textContent = p.keep;
     $('qv-price').textContent = fmt(p.price); $('qv-qty').textContent = 1;
-    $('toast').hidden = true; setMenu(false); $('scrim').hidden = false; $('qv').hidden = false; lock(true); $('qv-add').focus();
+    setMenu(false); $('scrim').hidden = false; $('qv').hidden = false; lock(true); $('qv-add').focus();
   }
   function closeQV(silent){ if ($('qv').hidden) return; $('qv').hidden = true; if ($('drawer').hidden) { $('scrim').hidden = true; lock(false); } if (!silent && lastFocus) lastFocus.focus(); }
-  var toastTimer = 0;
-  function toast(msg){ $('toast-msg').textContent = msg; $('toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(function(){ $('toast').hidden = true; }, 3200); }
-
-  // checkout
-  var step = 1;
-  var DAYS = (function(){
-    var names = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'], months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-    var out = [], d = new Date();
-    for (var i = 1; i <= 4; i++) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate() + i); out.push((i === 1 ? 'Mañana' : names[x.getDay()]) + ' ' + x.getDate() + ' ' + months[x.getMonth()]); }
-    return out;
-  })();
-  var TIMES = { pickup:['7:30','8:30','9:30','11:00','13:00'], delivery:['8:00–9:00','9:00–10:00','10:00–11:00','12:00–13:00'] };
-  function openCheckout(){
+  // Brinco Kit: el carrito de la boutique es la fuente; el kit hace el cobro y el seguimiento
+  window.BrincoCart = {
+    items: function(){ return Object.keys(cart).map(function(id){ var p = byId[id]; return { name: p.plain, detail: p.sub, qty: cart[id], unit: p.price, img: '/' + p.img }; }); },
+    total: function(){ return subtotal(); },
+    clear: function(){ cart = {}; save(); renderAll(); },
+    close: function(){ if (!$('drawer').hidden) closeDrawer(); }
+  };
+  function goCheckout(){
     if (!count()) return;
-    closeDrawer(); step = 1; $('checkout').hidden = false; lock(true); $('checkout').scrollTop = 0;
-    showStep(1); renderSummary(); renderSlots(); setTimeout(function(){ $('f-name').focus(); }, 50);
-  }
-  function closeCheckout(){ $('checkout').hidden = true; lock(false); }
-  function showStep(n){
-    step = n;
-    ['step-1','step-2','step-3','step-done'].forEach(function(id, i){ $(id).hidden = (i + 1) !== n; });
-    $('steps').hidden = n === 4; $('co-side').hidden = n === 4;
-    Array.prototype.forEach.call($('steps').children, function(li, i){ li.className = i + 1 === n ? 'on' : (i + 1 < n ? 'done' : ''); });
-    $('checkout').scrollTop = 0;
-    if (n === 3) renderPayNote();
-  }
-  function renderSlots(){
-    $('days').innerHTML = DAYS.map(function(d, i){ return '<button type="button" class="slot" data-day="' + i + '" aria-pressed="' + (order.day === i) + '">' + d + '</button>'; }).join('');
-    var ts = TIMES[order.mode]; if (ts.indexOf(order.time) < 0) order.time = ts[1];
-    $('times').innerHTML = ts.map(function(t){ return '<button type="button" class="slot" data-time="' + t + '" aria-pressed="' + (order.time === t) + '">' + t + '</button>'; }).join('');
-    Array.prototype.forEach.call(document.querySelectorAll('[data-mode]'), function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-mode') === order.mode); });
-    $('addr-fields').hidden = order.mode !== 'delivery';
-    $('cash-title').textContent = order.mode === 'delivery' ? 'Pago al recibir' : 'Pago al recoger';
-    var t = totals(); $('ship-label').textContent = t.sub >= FREE_SHIP ? 'Gratis en este pedido' : 'RD$250 · gratis desde RD$2,500';
-  }
-  function renderSummary(){
-    var ids = Object.keys(cart), t = totals();
-    $('co-lines').innerHTML = ids.map(function(id){ return '<div class="mini-line"><span>' + cart[id] + ' × ' + byId[id].plain + '</span><span>' + fmt(byId[id].price * cart[id]) + '</span></div>'; }).join('');
-    $('co-sums').innerHTML =
-      '<div class="sum-row" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--line)"><span>Subtotal</span><span>' + fmt(t.sub) + '</span></div>' +
-      '<div class="sum-row"><span>ITBIS (18%)</span><span>' + fmt(t.tax) + '</span></div>' +
-      '<div class="sum-row"><span>' + (order.mode === 'delivery' ? 'Entrega a domicilio' : 'Recogida en el atelier') + '</span><span>' + (t.ship ? fmt(t.ship) : 'Gratis') + '</span></div>' +
-      '<div class="sum-row total"><span>Total</span><span>' + fmt(t.total) + '</span></div>';
-  }
-  var VAULT_LINE = '<p class="vault-line"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z\"/><rect x=\"9\" y=\"11\" width=\"6\" height=\"5\" rx=\"1\"/><path d=\"M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11\"/></svg><span>Brinco no guarda tu tarjeta. La protegen <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.</span></p>';
-  function renderPayNote(){
-    var t = totals(), notes = {
-      card: 'Al confirmar, se abrirá la pasarela de pago segura del banco (Azul o CardNET) para cobrar <strong>' + fmt(t.total) + '</strong>. Esta maqueta no cobra ni pide datos de tarjeta.',
-      transfer: 'Te enviaremos por WhatsApp y correo los datos de la cuenta. Preparamos el pedido en cuanto confirmemos la transferencia de <strong>' + fmt(t.total) + '</strong>.',
-      cash: 'Pagas <strong>' + fmt(t.total) + '</strong> ' + (order.mode === 'delivery' ? 'al recibir el pedido' : 'al recogerlo en el atelier') + ', en efectivo o con tarjeta.'
-    };
-    $('pay-note').innerHTML = notes[order.pay] + (order.pay === 'card' ? VAULT_LINE : '');
-    Array.prototype.forEach.call(document.querySelectorAll('[data-pay]'), function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-pay') === order.pay); });
-  }
-  function check(id, ok){ var f = $(id).closest('.field'); f.classList.toggle('bad', !ok); f.querySelector('.err').hidden = ok; return ok; }
-  function validate1(){
-    var a = check('f-name', $('f-name').value.trim().length > 1);
-    var b = check('f-phone', $('f-phone').value.replace(/\D/g, '').length >= 10);
-    var c = check('f-email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('f-email').value.trim()));
-    var first = !a ? 'f-name' : !b ? 'f-phone' : !c ? 'f-email' : null; if (first) $(first).focus();
-    return a && b && c;
-  }
-  function validate2(){
-    if (order.mode !== 'delivery') return true;
-    var a = check('f-addr', $('f-addr').value.trim().length > 4), b = check('f-sector', !!$('f-sector').value);
-    if (!a) $('f-addr').focus(); else if (!b) $('f-sector').focus();
-    return a && b;
-  }
-  function place(){
-    var t = totals(), no = 'MF-' + String(Math.floor(1000 + Math.random() * 9000));
-    var lines = Object.keys(cart).map(function(id){ return '<div class="mini-line"><span>' + cart[id] + ' × ' + byId[id].plain + '</span><span>' + fmt(byId[id].price * cart[id]) + '</span></div>'; }).join('');
-    var where = order.mode === 'delivery' ? 'Entrega en ' + esc($('f-addr').value.trim()) + ', ' + esc($('f-sector').value) : 'Recogida en el atelier, [Dirección]';
-    var payTxt = {card:'Tarjeta (pasarela del banco)', transfer:'Transferencia bancaria', cash: order.mode === 'delivery' ? 'Pago al recibir' : 'Pago al recoger'}[order.pay];
-    $('step-done').innerHTML = '<div class="done-card"><div class="eyebrow">Pedido recibido</div><h2 class="h2">Merci, <em>' + esc($('f-name').value.trim().split(' ')[0]) + '</em>.</h2>' +
-      '<div class="order-no">' + no + '</div><p style="margin:0;font-weight:300;line-height:1.6;color:var(--muted)">Te enviamos la confirmación a ' + esc($('f-email').value.trim()) + ' y por WhatsApp al ' + esc($('f-phone').value.trim()) + '.<br>(Maqueta: no se envió nada ni se hizo ningún cobro.)</p>' +
-      '<div class="done-box"><div class="mini-line"><strong>' + DAYS[order.day] + ' · ' + order.time + '</strong><span></span></div><div class="mini-line"><span>' + where + '</span><span></span></div><div class="mini-line"><span>' + payTxt + '</span><span></span></div>' +
-      '<div style="border-top:1px solid var(--line);margin:12px 0"></div>' + lines +
-      '<div class="sum-row total" style="margin-top:10px"><span>Total</span><span>' + fmt(t.total) + '</span></div></div>' +
-      '<button type="button" class="btn" id="done-back">Volver a la boutique</button></div>';
-    cart = {}; save(); renderTabs(); renderGrid(); renderCart();
-    showStep(4); $('done-back').focus();
+    if (window.Brinco && Brinco.checkout) { Brinco.checkout(); return; }
+    var btn = $('go-checkout'); if (btn) { btn.disabled = true; btn.textContent = 'Cargando el pago…'; }
+    var tries = 0, iv = setInterval(function(){ if (window.Brinco && Brinco.checkout) { clearInterval(iv); renderCart(); Brinco.checkout(); } else if (++tries > 50) { clearInterval(iv); renderCart(); } }, 100);
   }
 
   // events
@@ -1083,31 +892,19 @@ section[id]{scroll-margin-top:var(--head)}
     if (d.view) { openQV(d.view); return; }
     if (d.close !== undefined) { if (el.closest('#drawer')) closeDrawer(); else closeQV(); return; }
     if (d.goshop !== undefined) { closeDrawer(); location.hash = '#tienda'; return; }
-    if (d.mode) { order.mode = d.mode; renderSlots(); renderSummary(); return; }
-    if (d.day) { order.day = +d.day; renderSlots(); return; }
-    if (d.time) { order.time = d.time; renderSlots(); return; }
-    if (d.pay) { order.pay = d.pay; renderPayNote(); return; }
-    if (d.back) { showStep(+d.back); return; }
-    if (el.id === 'cart-btn' || el.id === 'toast-open') { $('toast').hidden = true; openDrawer(); return; }
-    if (el.id === 'go-checkout') { openCheckout(); return; }
+    if (el.id === 'cart-btn') { openDrawer(); return; }
+    if (el.id === 'go-checkout') { goCheckout(); return; }
     if (el.id === 'qv-plus') { qvQty = Math.min(24, qvQty + 1); $('qv-qty').textContent = qvQty; return; }
     if (el.id === 'qv-minus') { qvQty = Math.max(1, qvQty - 1); $('qv-qty').textContent = qvQty; return; }
     if (el.id === 'qv-add') { add(qvId, qvQty); closeQV(); return; }
-    if (el.id === 'co-back-shop' || el.id === 'done-back') { closeCheckout(); location.hash = '#tienda'; return; }
-    if (el.id === 'co-logo') { closeCheckout(); return; }
   });
   function refocus(sel, old){ var b = document.querySelector((old.closest('#drawer') ? '#drawer ' : '#grid ') + sel); if (b) { b.focus(); return true; } return false; }
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { if (!mnav.hidden) setMenu(false, true); else if (!$('qv').hidden) closeQV(); else if (!$('drawer').hidden) closeDrawer(); else if (!$('checkout').hidden && step < 4) closeCheckout(); } });
-  $('step-1').addEventListener('submit', function(e){ e.preventDefault(); if (validate1()) showStep(2); });
-  $('step-2').addEventListener('submit', function(e){ e.preventDefault(); if (validate2()) showStep(3); });
-  $('step-3').addEventListener('submit', function(e){ e.preventDefault(); place(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { if (!mnav.hidden) setMenu(false, true); else if (!$('qv').hidden) closeQV(); else if (!$('drawer').hidden) closeDrawer(); } });
   renderAll();
 
   document.getElementById('news').addEventListener('submit', function(e){ e.preventDefault(); document.getElementById('news-ok').hidden = false; });
 })();
 </script>
-
-</body></html>
 
 </body>
 </html>
