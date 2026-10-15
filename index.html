@@ -878,7 +878,7 @@ section[id]{scroll-margin-top:var(--head)}
   function closeQV(silent){ if ($('qv').hidden) return; $('qv').hidden = true; if ($('drawer').hidden) { $('scrim').hidden = true; lock(false); } if (!silent && lastFocus) lastFocus.focus(); }
   // Brinco Kit: el carrito de la boutique es la fuente; el kit hace el cobro y el seguimiento
   window.BrincoCart = {
-    items: function(){ return Object.keys(cart).map(function(id){ var p = byId[id]; return { name: p.plain, detail: p.sub, qty: cart[id], unit: p.price, img: '/' + p.img }; }); },
+    items: function(){ return Object.keys(cart).map(function(id){ var p = byId[id]; return { name: p.plain, detail: p.sub, qty: cart[id], unit: p.price, img: '/' + p.img, sku: { p: id } }; }); },
     total: function(){ return subtotal(); },
     clear: function(){ cart = {}; save(); renderAll(); },
     close: function(){ if (!$('drawer').hidden) closeDrawer(); }

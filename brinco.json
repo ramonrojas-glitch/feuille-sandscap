@@ -61,5 +61,24 @@
     "correo": "[Correo]",
     "instagram": "[@maisonfeuille]"
   },
-  "idioma": "es"
+  "idioma": "es",
+  "catalogo": {
+    "productos": {
+      "croissant": 195,
+      "pain-chocolat": 225,
+      "amandes": 260,
+      "kouign": 275,
+      "escargot": 295,
+      "chausson": 235,
+      "tarte-citron": 395,
+      "millefeuille": 425,
+      "eclair": 325,
+      "paris-brest": 450,
+      "opera": 425,
+      "macarons": 650,
+      "baguette": 175,
+      "boite": 1450
+    },
+    "extras": {}
+  }
 }
